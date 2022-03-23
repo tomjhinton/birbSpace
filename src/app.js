@@ -3,7 +3,7 @@ import * as THREE from 'three'
 // import * as dat from 'lil-gui'
 import gsap from 'gsap'
 
-const textureLoader = new THREE.TextureLoader()
+
 
 import vertexShader from './shaders/vertex.glsl'
 
@@ -27,13 +27,14 @@ const scene = new THREE.Scene()
 
 
 
+
 const loadingBarElement = document.querySelector('.loading-bar')
 const loadingBarText = document.querySelector('.loading-bar-text')
 const loadingManager = new THREE.LoadingManager(
   // Loaded
   () =>{
     window.setTimeout(() =>{
-      gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 3, value: 0, delay: 1 })
+      gsap.to(overlayMaterial.uniforms.uAlpha, { duration: 5, value: 0, delay: 2 })
 
       loadingBarElement.classList.add('ended')
       loadingBarElement.style.transform = ''
@@ -52,6 +53,8 @@ const loadingManager = new THREE.LoadingManager(
 )
 
 const gtlfLoader = new GLTFLoader(loadingManager)
+
+const textureLoader = new THREE.TextureLoader(loadingManager)
 
 const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1)
 const overlayMaterial = new THREE.ShaderMaterial({
@@ -79,6 +82,7 @@ const overlayMaterial = new THREE.ShaderMaterial({
 const overlay = new THREE.Mesh(overlayGeometry, overlayMaterial)
 scene.add(overlay)
 
+console.log(overlay)
 
 
 //Models
@@ -434,6 +438,19 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 let scrollY = window.scrollY
 let currentSection = 0
 
+function birdSpin(){
+  gsap.to(
+    bird.rotation, {
+      delay: 3,
+      duration: 2.5,
+      ease: 'power2.inOut',
+      y: '+=.5'
+
+
+    }
+  )
+}
+
 window.addEventListener('scroll', () =>{
   scrollY = window.scrollY
 
@@ -442,8 +459,9 @@ window.addEventListener('scroll', () =>{
   if(newSection !== currentSection){
     currentSection = newSection
 
+    if(currentSection === 1 ){
     gsap.to(
-      spinMehses[currentSection].rotation, {
+      spinMehses[0].rotation, {
         duration: 3.5,
         ease: 'power2.inOut',
         x: '+=6',
@@ -452,8 +470,25 @@ window.addEventListener('scroll', () =>{
       }
     )
   }
+  }
+
+  if(currentSection >= 3 && bird.rotation.y ===0.){
+  gsap.to(
+    bird.rotation, {
+      delay: 1,
+      duration: 2.5,
+      ease: 'power2.inOut',
+      y: '-=.5',
+      onComplete: birdSpin
+
+    }
+  )
+}
+
+
 
 })
+
 
 
 // Cursor
@@ -466,7 +501,9 @@ cursor.y = 0
 window.addEventListener('mousemove', (event) => {
   cursor.x =event.clientX / sizes.width -.5
   cursor.y =event.clientY / sizes.height -.5
-  // console.log(cursor)
+  console.log(currentSection)
+
+
 })
 
 /**
