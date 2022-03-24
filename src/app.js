@@ -472,7 +472,7 @@ window.addEventListener('scroll', () =>{
   }
   }
 
-  if(currentSection >= 3 && bird.rotation.y ===0.){
+  if(currentSection === 3 && bird.rotation.y ===0.){
   gsap.to(
     bird.rotation, {
       delay: 1,

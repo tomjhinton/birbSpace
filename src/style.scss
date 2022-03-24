@@ -60,9 +60,9 @@ section:nth-child(odd)
     font-size: 10em;
     align-items: center;
     position: absolute;
-    top: 50%;
+    top: 65%;
     width: 100%;
-    height: 2px;
+    height: 5px;
     background: #33FF33;
     transform: scaleX(0);
     transform-origin: top left;
@@ -75,21 +75,24 @@ section:nth-child(odd)
 {
     transform: scaleX(0);
     transform-origin: 100% 0;
-    transition: transform 1.5s ease-in-out;
+    transition: transform 3.5s ease-in-out;
 }
 
 .loading-bar-text
 {
+  display: flex;
+  align-items: center;
     pointer-events: none;
     font-family: Ferrite;
     color: #33FF33;
     font-size: 10em;
     text-align: center;
     position: absolute;
-    top: 50%;
+    top: 0%;
     justify-content: center;
     width: 100%;
-    height: 20px;
+    height: 100vh;
+    background-color: black;
     // transition: transform 1.5s ease-in-out;
 
 
