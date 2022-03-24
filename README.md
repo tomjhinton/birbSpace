@@ -29,8 +29,8 @@ Ok so the bird is meant to turn towards you when you scroll to it, that's done w
 Font is [Basement](https://grotesque.basement.studio/)
 
 
-#Bonus
-As ppl pointed out we did space genuary, deployed mine[here](https://tomjhinton.github.io/genuarySpace/)
+# Bonus
+As ppl pointed out we did space genuary, deployed mine [here](https://tomjhinton.github.io/genuarySpace/)
 - refresh for minimal changes
 - yes thats my level of generative
 - yes I put this here because I feel bad about how much of Bruno's stuff I used.
